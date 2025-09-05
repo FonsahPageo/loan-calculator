@@ -12,14 +12,15 @@ function calculateLoan() {
     }
 
     const monthlyInterestRate = interestRate / 100 / 12;
-    const totalPayments = loanDuration;
-    const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -totalPayments));
-    const totalInterest = (monthlyPayment * totalPayments) - loanAmount;
+    const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanDuration));
+    const totalInterest = (monthlyPayment * loanDuration) - loanAmount;
+    const totalPayment = monthlyPayment * loanDuration;
 
     // displayResult(monthlyPayment, totalInterest);
     result.innerHTML = `
         <p>Monthly Payment: ${monthlyPayment.toFixed(2)}</p>
         <p>Total Interest Paid: ${totalInterest.toFixed(2)}</p>
+        <p>Total Amount Paid: ${totalPayment.toFixed(2)}</p>
     `;
 }
 
